@@ -1,6 +1,6 @@
 ---
 - name: install and configure tomcat 9
-  hosts: appserver
+  hosts: all
   become: yes
   vars:
     java_package: openjdk-11-jdk
