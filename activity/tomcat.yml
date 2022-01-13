@@ -51,3 +51,7 @@
         path: "{{ item }}"
         mode: 0751
       with_items: "{{ tomcat_executables }}"
+    - name: tomcat service
+      copy: 
+        src: tomcat.service
+        state: started
