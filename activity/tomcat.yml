@@ -32,12 +32,22 @@
         src: "/opt/tomcat/apache-tomcat-9.0.56"
         dest: /opt/tomcat/latest
         state: link
-    - name: Create a symbolic link
+    - name: Create recurse file
       ansible.builtin.file:
         dest: /opt/tomcat/
         owner: tomcat
         group: tomcat
         state: directory
         recurse: yes
-          
-   
+    - name: find all the shell files in the binaries
+      find: 
+        path: tomcat/latest/bin
+        pattern: "*.sh"
+      register: shfiles
+    - set_fact:
+        tomcat_executables: "{{ shfiles.files | map(attribute='path') | list }}"
+    - name: change permission of shell files
+      file:
+        path: "{{ item }}"
+        mode: 0751
+      with_items: "{{ tomcat_executables }}"
