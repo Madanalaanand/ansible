@@ -41,7 +41,7 @@
         recurse: yes
     - name: find all the shell files in the binaries
       find: 
-        path: tomcat/latest/bin
+        path: /opt/tomcat/latest/bin
         pattern: "*.sh"
       register: shfiles
     - set_fact:
