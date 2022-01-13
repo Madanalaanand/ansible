@@ -12,6 +12,7 @@
       ansible.builtin.user:
         name: tomcat
         shell: /bin/false
+        home: /opt/tomcat
         state: present
     - name: Download tomcat
       get_url:
@@ -20,6 +21,7 @@
     - name: Extract tar file
       ansible.builtin.unarchive:
         src: "/tmp/apache-tomcat-9.0.56.tar.gz"
-        dest: /etc/systemd/system/tomcat.service
+        dest: /opt/tomcat
+        remote_src: yes
           
    
