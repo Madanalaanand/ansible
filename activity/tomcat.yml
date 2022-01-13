@@ -11,6 +11,7 @@
     - name: tomcat
       ansible.builtin.user:
         name: tomcat
+        home: /opt/tomcat
         shell: /bin/false
         state: present
     - name: Download tomcat
