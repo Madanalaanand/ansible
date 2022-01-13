@@ -30,9 +30,8 @@
     - name: Create a symbolic link
       ansible.builtin.file:
         src: "/opt/tomcat/apache-tomcat-9.0.56"
-        dest: "/opt/tomcat/latest"
-        state: hard
-        mode: 1777
+        dest: /opt/tomcat/latest
+        state: link
         
           
    
