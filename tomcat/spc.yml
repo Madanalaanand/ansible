@@ -1,0 +1,21 @@
+---
+- name: install and configure tomcat 9
+  hosts: appserver
+  become: yes
+  vars:
+    java_package: openjdk-11-jdk
+  tasks:
+    - name: update packages and install java
+      apt:
+        name: "{{ java_package }}"
+        update_cache: yes
+        state: present
+    - name: Download jar file
+      get_url:
+        url: https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
+        dest: /usr/local
+    - name: add new user
+      ansible.builtin.user:
+        name: spring
+        password: spring
+        state: present    
