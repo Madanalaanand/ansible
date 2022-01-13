@@ -1,7 +1,6 @@
 ---
 - name: install and configure tomcat 9
   hosts: all
-  become_method: sudo
   become: yes
   vars:
     java_package: openjdk-11-jdk

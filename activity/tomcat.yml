@@ -55,6 +55,12 @@
       copy: 
         src: tomcat.service
         dest: /etc/systemd/system/tomcat.service
+      notify:
+      - reload and enable tomcat
+    - name: ensure tomcat is running
+      ansible.builtin.systemd:
+        name: tomcat.service
+        state: started
   handlers:
     - name: reload and enable tomcat
       ansible.builtin.systemd:
