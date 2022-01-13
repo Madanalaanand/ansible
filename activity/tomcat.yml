@@ -34,7 +34,7 @@
         state: link
     - name: Create recurse file
       ansible.builtin.file:
-        dest: /opt/tomcat/
+        path: /opt/tomcat/
         owner: tomcat
         group: tomcat
         state: directory
