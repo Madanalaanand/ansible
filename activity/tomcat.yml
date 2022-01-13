@@ -20,6 +20,6 @@
     - name: Extract tar file
       ansible.builtin.unarchive:
         src: "/tmp/apache-tomcat-9.0.56.tar.gz"
-        dest: /opt/tomcat/
+        dest: /etc/systemd/system/tomcat.service
           
    
