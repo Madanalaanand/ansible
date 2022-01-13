@@ -1,25 +1,31 @@
 ---
-- name: install apache2 and php
-  hosts: all
+- name: install and configure tomcat 9
+  hosts: appserver
   become: yes
-  tasks: 
-    - name: Install apache2
+  vars:
+    java_package: openjdk-11-jdk
+    tomcat_username: tomcat
+    tomcat_home: /opt/tomcat
+    tomcat_shell: /bin/false
+    tomcat_version: '9.0.56'
+    tomcat_service_dest: /etc/systemd/system/tomcat.service
+  tasks:
+    - name: update packages and install java
       apt:
-        name: apache2
+        name: "{{ java_package }}"
         update_cache: yes
         state: present
-    - name: install php modules
-      apt:
-        name:
-          - php 
-          - libapache2-mod-php 
-          - php-mysql 
-        state: present 
-    - name: create info.php
-      copy:
-        dest: /var/www/html/info.php
-        content: |
-          <?php 
-          phpinfo(); 
-          ?>     
-  
+    - name: add a tomcat user
+      ansible.builtin.user:
+        name: "{{ tomcat_username }}"
+        home: "{{ tomcat_home }}"
+        shell: "{{ tomcat_shell }}"
+        state: present
+    - name: download the tomcat distribution
+      get_url:
+        url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
+        dest: "/tmp/apache-tomcat-{{ tomcat_version }}.tar.gz"
+    - name: untar the tomcat distribution
+      ansible.builtin.unarchive:
+        src: "/tmp/apache-tomcat-{{ tomcat_version }}.tar.gz"
+        dest: "{{ tomcat_home }}"
