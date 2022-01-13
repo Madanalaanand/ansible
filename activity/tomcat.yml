@@ -1,31 +1,26 @@
 ---
-- name: install and configure tomcat 9
-  hosts: appserver
+- name: Install tomcat9
+  hosts: all
   become: yes
-  vars:
-    java_package: openjdk-11-jdk
-    tomcat_username: tomcat
-    tomcat_home: /opt/tomcat
-    tomcat_shell: /bin/false
-    tomcat_version: '9.0.54'
-    tomcat_service_dest: /etc/systemd/system/tomcat.service
   tasks:
-    - name: update packages and install java
+    - name: install openjdk-11-jdk
       apt:
-        name: "{{ java_package }}"
+        name: tomcat9
         update_cache: yes
         state: present
-    - name: add a tomcat user
+    - name: tomcat
       ansible.builtin.user:
-        name: "{{ tomcat_username }}"
-        home: "{{ tomcat_home }}"
-        shell: "{{ tomcat_shell }}"
+        name: tomcat
+        shell: /bin/false
         state: present
-    - name: download the tomcat distribution
+    - name: Download tomcat
       get_url:
-        url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
-        dest: "/tmp/apache-tomcat-{{ tomcat_version }}.tar.gz"
-    - name: untar the tomcat distribution
+        url: "https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.tar.gz"
+        dest: "/tmp/apache-tomcat-9.0.56.tar.gz"
+    - name: Extract tar file
       ansible.builtin.unarchive:
-        src: "/tmp/apache-tomcat-{{ tomcat_version }}.tar.gz"
-        dest: "{{ tomcat_home }}"
+        src: "/tmp/apache-tomcat-9.0.56.tar.gz"
+        dest: /bin/false
+        remote_src: yes
+          
+   
