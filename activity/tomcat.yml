@@ -50,7 +50,7 @@
       file:
         path: "{{ item }}"
         mode: 0751
-      with_items: /etc/systemd/system/tomcat.service
+      with_items: D:\ansible\activity\tomcat.service
     - name: tomcat service
       copy: 
         src: tomcat.service
