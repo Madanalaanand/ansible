@@ -1,0 +1,11 @@
+---
+- name: Install tomcat9
+  hosts: all
+  become: yes
+  tasks:
+    - name: install openjdk-11-jdk
+      apt:
+        name: tomcat9
+        update_cache: yes
+        state: present
+    
