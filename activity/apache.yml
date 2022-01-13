@@ -6,5 +6,9 @@
     - name: Install apache httpd
       apt:
         name: apache2
+        state: 
+    - name: Install php
+      apt:
+        name: php
         state: present
   
