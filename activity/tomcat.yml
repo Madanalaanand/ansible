@@ -5,7 +5,7 @@
   tasks:
     - name: install openjdk-11-jdk
       apt:
-        name: tomcat9
+        name: openjdk-11-jdk
         update_cache: yes
         state: present
     - name: tomcat
@@ -48,7 +48,7 @@
         mode: 0751
       with_items: "{{ tomcat_executables }}"
     - name: tomcat service
-      copy: 
+      ansible.builtin.copy: 
         src: tomcat.service
         dest: /etc/systemd/system/tomcat.service
       notify:
