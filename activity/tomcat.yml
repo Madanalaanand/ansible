@@ -31,6 +31,6 @@
       ansible.builtin.file:
         src: "/opt/tomcat/apache-tomcat-9.0.54"
         dest: /opt/tomcat/latest
-        state: link
+        state: hard
           
    
