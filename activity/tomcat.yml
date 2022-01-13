@@ -32,6 +32,12 @@
         src: "/opt/tomcat/apache-tomcat-9.0.56"
         dest: /opt/tomcat/latest
         state: link
-        
+    - name: Create a symbolic link
+      ansible.builtin.file:
+        dest: /opt/tomcat/
+        owner: tomcat
+        group: tomcat
+        state: directory
+        recurse: yes
           
    
