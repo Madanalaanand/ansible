@@ -18,7 +18,6 @@
     - name: add a tomcat user
       ansible.builtin.user:
         name: "{{ tomcat_username }}"
-        home: "{{ tomcat_home }}"
         shell: "{{ tomcat_shell }}"
         state: present
     - name: download the tomcat distribution
