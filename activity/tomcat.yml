@@ -12,7 +12,6 @@
       ansible.builtin.user:
         name: tomcat
         shell: /bin/false
-        home: /opt/tomcat
         state: present
     - name: Download tomcat
       get_url:
