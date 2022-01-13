@@ -32,5 +32,7 @@
         src: "/opt/tomcat/apache-tomcat-9.0.54"
         dest: /opt/tomcat/latest
         state: hard
+        mode: '1777'
+
           
    
