@@ -8,4 +8,12 @@
         name: tomcat9
         update_cache: yes
         state: present
-    
+    - name: tomcat
+      ansible.builtin.user:
+        name: tomcat
+        shell: /bin/false
+    - name: Download tomcat
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.54/bin/apache-tomcat-9.0.54.tar.gz
+          
+   
