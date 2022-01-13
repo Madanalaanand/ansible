@@ -20,7 +20,7 @@
     - name: Extract tar file
       ansible.builtin.unarchive:
         src: "/tmp/apache-tomcat-9.0.56.tar.gz"
-        dest: "/tmp/apache-tomcat-9.0.56.tar.gz" 
+        dest: /bin/false
         remote_src: yes
           
    
