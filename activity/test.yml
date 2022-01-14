@@ -1,0 +1,9 @@
+---
+- name: madanala_anand
+  hosts: all 
+  become: yes
+  tasks:
+    - name: anand
+      user: 
+        - name: anand_babu
+          state: present
