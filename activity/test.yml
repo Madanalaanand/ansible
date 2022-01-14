@@ -1,9 +1,13 @@
 ---
-- name: madanala_anand
+- name: install ngnix
   hosts: all 
   become: yes
   tasks:
-    - name: anand
-      user: 
-        - name: anand_babu
-          state: present
+    - name: install ngnix
+      apt: 
+        name: nginx
+        update_cache: yes
+        state: present
+    - name: list
+      debug:
+          msg: "{{ item }}"
