@@ -1,0 +1,13 @@
+---
+- name: install ngnix
+  hosts: all 
+  become: yes
+  tasks:
+    - name: install ngnix
+      apt: 
+        name: nginx
+        update_cache: yes
+        state: present
+    - name: list
+      debug:
+          msg: "{{ item }}"
