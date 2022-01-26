@@ -1,6 +1,6 @@
 ---
 - name: anand_babu
-  hosts: all
+  hosts: server
   become: true
   tasks:
     - name: madanala_babu
